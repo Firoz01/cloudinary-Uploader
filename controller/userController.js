@@ -5,8 +5,11 @@ const upload = require("../utils/multer");
 
 exports.uploadImage = catchAsync(async (req, res, next) => {
   // Upload image to cloudinary
-  const result = await cloudinary.uploader.upload(req.file.path);
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    folder: "myfolder",
+  });
 
+  console.log(result);
   // Create new user
   let user = new User({
     name: req.body.name,
